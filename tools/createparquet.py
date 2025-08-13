@@ -129,3 +129,4 @@ if __name__ == '__main__':
     # VAL_OUTPUT_PARQUET_PATH = 'dataocr/val.parquet'
     # create_dataset_from_folders(VAL_DATA_DIR, VAL_OUTPUT_PARQUET_PATH)
 
+
