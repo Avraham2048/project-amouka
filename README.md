@@ -22,7 +22,7 @@ Below you’ll find a full breakdown of the repository structure and the purpose
 - [🐍 Main Python Scripts](#main-python-scripts)
 - [🔄 Typical Workflow](#typical-workflow)
 - [💡 Usage](#usage)
-- [Concrete Example](#concrete-example)
+- [📝Concrete Example](#concrete-example)
 - [📚 References](#references)
 
 ---
@@ -163,7 +163,7 @@ python UseModels/usemodels.py
 ---
 
 <a name="concrete-example"></a>
-## Concrete Example
+## 📝Concrete Example
 | Step | Input / Output | Description |
 |------|---------------|-------------|
 | 🖼️ Input Image | ![Example Hebrew](OcrData/test.jpg) | A Hebrew word image with no diacritics. |
