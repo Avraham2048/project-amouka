@@ -179,7 +179,6 @@ python UseModels/usemodels.py
 <a name="references"></a>
 ## 📚 References
 - [Sefaria – A Living Library of Jewish Texts](https://www.sefaria.org)  
-- [Sefaria — Texts (direct)](https://www.sefaria.org.il/texts)  
 - [TRDG – TextRecognitionDataGenerator (GitHub)](https://github.com/Belval/TextRecognitionDataGenerator)  
 - [Python Official Documentation](https://docs.python.org/3/)  
 - [PyTorch — Tensors and Deep Learning (Official)](https://pytorch.org)
