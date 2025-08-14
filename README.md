@@ -83,7 +83,7 @@ A collection of **utility scripts** used throughout the project.
 
 ---
 
-## 💡 Example Usage
+## 💡 Usage
 ```bash
 # Run OCR on an image
 python UseModels/use_ocr.py my_image.png
@@ -93,9 +93,10 @@ python UseModels/use_diac.py "שלום עולם"
 
 # Full pipeline: OCR + Diacritics
 python UseModels/use_both.py my_image.png
+```
+---
 
-
-### Example
+## Concrete Example
 | Step | Input / Output | Description |
 |------|---------------|-------------|
 | 🖼️ Input Image | ![Example Hebrew](OcrData/test.jpg) | A Hebrew word image with no diacritics. |
@@ -105,4 +106,8 @@ python UseModels/use_both.py my_image.png
 ---
 
 📌 The beauty of this pipeline is that **each model can be used independently** or **together** depending on your needs.
+
+---
+Thank you for reading us.
+Tsuriel and Avraham.
 
