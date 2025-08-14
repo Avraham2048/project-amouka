@@ -93,3 +93,16 @@ python UseModels/use_diac.py "שלום עולם"
 
 # Full pipeline: OCR + Diacritics
 python UseModels/use_both.py my_image.png
+
+
+### Example
+| Step | Input / Output | Description |
+|------|---------------|-------------|
+| 🖼️ Input Image | ![Example Hebrew](OcrData/test.jpg) | A Hebrew word image with no diacritics. |
+| ✍️ OCR Output | חכמה | The OCR model recognizes the text without nikkud. |
+| 🎯 Final Output | חָכְמָה | The diacritization model adds the correct vowel marks. |
+
+---
+
+📌 The beauty of this pipeline is that **each model can be used independently** or **together** depending on your needs.
+
