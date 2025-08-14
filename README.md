@@ -12,10 +12,26 @@ Below you’ll find a full breakdown of the repository structure and the purpose
 ## 📂 Project Structure
 
 ### 1. **DiacData** 📚  
-Contains all the **text data** used to train the *Diacritization Model*.  
-- Includes text **with nikkud** ✅ and **without nikkud** ❌.  
-- The model learns from these pairs to predict missing vowel marks on plain Hebrew text.  
-- **Main purpose:** Provide training data for the `DiacModel.py` script.
+Contains all the **text data** used to train the *Diacritization Model*.
+
+- Holds **two versions** of Hebrew text:  
+  1. **With nikkud** ✅ (vowel marks).  
+  2. **Without nikkud** ❌ (plain consonantal Hebrew).  
+- The model learns from these **paired examples** how to insert the correct diacritical marks into plain text.
+
+🛠 **How we built the dataset:**  
+We prepared the diacritization dataset from scratch:  
+1. **Download source texts** in `.txt` format from **[sefaria.org](https://www.sefaria.org)** — a large online library of Hebrew texts.  
+2. Keep the **original version with nikkud** as the *target* text for the model.  
+3. Run our custom Python script **`EraseDiac.py`** to remove all diacritics (nikkud) from the text, producing the *input* text.  
+4. Store both the *with-nikkud* and *without-nikkud* versions in `DiacData`.
+
+📌 **Why this matters:**  
+- Hebrew without nikkud can be highly ambiguous — the same word can have many possible readings.  
+- By training the model on side-by-side examples of text **with and without** diacritics, it learns to restore the correct nikkud automatically.  
+- This makes the system very useful for restoring pronunciation guides in educational, liturgical, or linguistic contexts.
+
+✨ The resulting dataset serves as the **foundation** for the `Diacmodel.py` training script.
 
 ---
 
