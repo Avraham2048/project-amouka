@@ -30,8 +30,8 @@ Stores the **training and testing data** for the OCR model.
 This is where the **trained models** are stored after training is complete.  
 - Each model is saved in a format ready to be loaded for inference.  
 - **Contents:**  
-  - `OcrModel_trained` (final OCR model)  
-  - `DiacModel_trained` (final diacritization model)  
+  - `OcrModel` (final OCR model)  
+  - `DiacModel` (final diacritization model)  
 
 ---
 
@@ -85,14 +85,15 @@ A collection of **utility scripts** used throughout the project.
 
 ## 💡 Usage
 ```bash
+
 # Run OCR on an image
-python UseModels/use_ocr.py my_image.png
+python UseModels/use_ocr.py //just need to change the path to the picture in the script
 
 # Add diacritics to text
 python UseModels/use_diac.py "שלום עולם"
 
 # Full pipeline: OCR + Diacritics
-python UseModels/use_both.py my_image.png
+python UseModels/usemodels.py 
 ```
 ---
 
