@@ -21,8 +21,35 @@ Contains all the **text data** used to train the *Diacritization Model*.
 
 ### 2. **OcrData** 🖼️  
 Stores the **training and testing data** for the OCR model.  
-- Images of text 📄 + corresponding labels.  
-- Used by `OcrModel.py` to train the OCR model to recognize printed or handwritten Hebrew.
+
+- Contains **images of Hebrew text** 📄 and their corresponding label files.  
+- These datasets are used by `OcrModel.py` to train the OCR model to recognize **printed or handwritten Hebrew text**.  
+
+🛠 **How we built the dataset:**  
+We created our own **custom “home-made” dataset** from Hebrew books.  
+1. We downloaded Hebrew texts in `.txt` format from **[sefaria.org](https://www.sefaria.org.il/texts)**.  
+2. Using the Python library **[trdg](https://github.com/Belval/TextRecognitionDataGenerator)** (*Text Recognition Data Generator*), we transformed these raw text files into a large collection of synthetic training images.  
+3. This process allowed us to create a dataset of **~10,000 samples** 📦.  
+
+📌 **Command used to generate the dataset**:  
+```bash
+trdg -i hebrew_1.txt -fd fonts/ -c 10000 -l he -w 1 --output_dir output1/
+```
+Where:
+
+-i hebrew_1.txt → Input Hebrew text file.
+
+-fd fonts/ → Folder containing Hebrew fonts.
+
+-c 10000 → Number of images to generate.
+
+-l he → Language code for Hebrew.
+
+-w 1 → Words per image (1 in this case).
+
+--output_dir output1/ → Output folder for generated images.
+
+✨ This gave us full control over the dataset, including the font styles, image size, and number of samples, making our OCR model more robust and accurate.
 
 ---
 
