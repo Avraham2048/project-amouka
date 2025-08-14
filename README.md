@@ -2,8 +2,8 @@
 
 Welcome to the **OCR & Diacritization** project! 🎯  
 This repository contains all the data, scripts, and trained models used to build and run two separate AI models:  
-1. **OCR Model** – to recognize text from images.  
-2. **Diacritization Model** – to add *nikkud* (vowel marks) to Hebrew text.  
+1. **OCR Model** – to recognize text from images with 89 % accuracy.
+2. **Diacritization Model** – to add *nikkud* (vowel marks) to Hebrew text with 93 % accuracy.  
 
 Below you’ll find a full breakdown of the repository structure and the purpose of each folder and file.  
 
