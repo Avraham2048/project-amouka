@@ -1,9 +1,0 @@
-to make the model:
-python punctuatorv2.py  --input_no_diac "data/*_no_diac.txt"  --input_with_diac "data/*_with_diac.txt"  --epochs 20  --batch_size 32  --hidden_dim 256 --num_layers 2  --sample_text "בבאור מידת הזהירות של הצדיקים, נדבר בספר הזה על היצר הרע"
-
-python punctuatorv3.py   --input_with_diac "data/*_with_diac.txt" 
-
-
-to use the trained model: 
-python use_diac.py "model_improved/punctuator_best.pt" "איך אתה מרגיש שלום לך שלום"
-python use_ocr.py #just need to change the name of the .png to identify
