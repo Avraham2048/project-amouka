@@ -108,6 +108,6 @@ python UseModels/use_both.py my_image.png
 📌 The beauty of this pipeline is that **each model can be used independently** or **together** depending on your needs.
 
 ---
-Thank you for reading us.
-Tsuriel and Avraham.
+***Thank you for reading us.***
+**Tsuriel and Avraham.**
 
