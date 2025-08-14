@@ -1,16 +1,36 @@
 # 📜 OCR & Diacritization Project By Tsuriel Vizel And Avraham Guez
 
+<a name="project"></a>
+
 Welcome to the **OCR & Diacritization** project! 🎯  
 This repository contains all the data, scripts, and trained models used to build and run two separate AI models:  
-1. **OCR Model** – to recognize text from images with 89 % accuracy.
+1. **OCR Model** – to recognize text from images with 89 % accuracy.  
 2. **Diacritization Model** – to add *nikkud* (vowel marks) to Hebrew text with 93 % accuracy.  
 
 Below you’ll find a full breakdown of the repository structure and the purpose of each folder and file.  
 
 ---
 
+## 📑 Table of Contents
+- [Project Overview](#project)
+- [📂 Project Structure](#project-structure)
+  - [DiacData](#diacdata)
+  - [OcrData](#ocrdata)
+  - [Models](#models)
+  - [UseModels](#usemodels)
+  - [tools](#tools)
+- [🐍 Main Python Scripts](#main-python-scripts)
+- [🔄 Typical Workflow](#typical-workflow)
+- [💡 Usage](#usage)
+- [Concrete Example](#concrete-example)
+- [📚 References](#references)
+
+---
+
+<a name="project-structure"></a>
 ## 📂 Project Structure
 
+<a name="diacdata"></a>
 ### 1. **DiacData** 📚  
 Contains all the **text data** used to train the *Diacritization Model*.
 
@@ -35,6 +55,7 @@ We prepared the diacritization dataset from scratch:
 
 ---
 
+<a name="ocrdata"></a>
 ### 2. **OcrData** 🖼️  
 Stores the **training and testing data** for the OCR model.  
 
@@ -53,22 +74,18 @@ trdg -i hebrew_1.txt -fd fonts/ -c 10000 -l he -w 1 --output_dir output1/
 ```
 Where:
 
--i hebrew_1.txt → Input Hebrew text file.
-
--fd fonts/ → Folder containing Hebrew fonts.
-
--c 10000 → Number of images to generate.
-
--l he → Language code for Hebrew.
-
--w 1 → Words per image (1 in this case).
-
---output_dir output1/ → Output folder for generated images.
+- `-i hebrew_1.txt` → Input Hebrew text file.  
+- `-fd fonts/` → Folder containing Hebrew fonts.  
+- `-c 10000` → Number of images to generate.  
+- `-l he` → Language code for Hebrew.  
+- `-w 1` → Words per image (1 in this case).  
+- `--output_dir output1/` → Output folder for generated images.  
 
 ✨ This gave us full control over the dataset, including the font styles, image size, and number of samples, making our OCR model more robust and accurate.
 
 ---
 
+<a name="models"></a>
 ### 3. **Models** 🏆  
 This is where the **trained models** are stored after training is complete.  
 - Each model is saved in a format ready to be loaded for inference.  
@@ -78,18 +95,20 @@ This is where the **trained models** are stored after training is complete.
 
 ---
 
+<a name="usemodels"></a>
 ### 4. **UseModels** 🚀  
 Contains Python scripts to **use the trained models** for real-world tasks.  
 - Scripts to load and run **only the OCR model** 🖋️  
 - Scripts to load and run **only the Diacritization model** ✨  
 - Scripts to **chain both models** so you can:
-  1. Recognize text from an image (OCR).
+  1. Recognize text from an image (OCR).  
   2. Automatically add vowel marks (Diacritization).  
 
 This folder is your **go-to** when you want to *use* the models rather than train them.
 
 ---
 
+<a name="tools"></a>
 ### 5. **tools** 🛠️  
 A collection of **utility scripts** used throughout the project.  
 - Functions for data preprocessing.  
@@ -98,6 +117,7 @@ A collection of **utility scripts** used throughout the project.
 
 ---
 
+<a name="main-python-scripts"></a>
 ## 🐍 Main Python Scripts
 
 ### **`OcrModel.py`** 📄  
@@ -111,6 +131,7 @@ A collection of **utility scripts** used throughout the project.
 
 ---
 
+<a name="typical-workflow"></a>
 ## 🔄 Typical Workflow
 
 1. **Prepare Data**  
@@ -126,11 +147,11 @@ A collection of **utility scripts** used throughout the project.
 
 ---
 
+<a name="usage"></a>
 ## 💡 Usage
 ```bash
-
 # Run OCR on an image
-python UseModels/use_ocr.py //just need to change the path to the picture in the script
+python UseModels/use_ocr.py  # change path to picture in the script
 
 # Add diacritics to text
 python UseModels/use_diac.py "שלום עולם"
@@ -138,8 +159,10 @@ python UseModels/use_diac.py "שלום עולם"
 # Full pipeline: OCR + Diacritics
 python UseModels/usemodels.py 
 ```
+
 ---
 
+<a name="concrete-example"></a>
 ## Concrete Example
 | Step | Input / Output | Description |
 |------|---------------|-------------|
@@ -153,7 +176,16 @@ python UseModels/usemodels.py
 
 ---
 
+<a name="references"></a>
+## 📚 References
+- [Sefaria – A Living Library of Jewish Texts](https://www.sefaria.org)  
+- [Sefaria — Texts (direct)](https://www.sefaria.org.il/texts)  
+- [TRDG – TextRecognitionDataGenerator (GitHub)](https://github.com/Belval/TextRecognitionDataGenerator)  
+- [Python Official Documentation](https://docs.python.org/3/)  
+- [PyTorch — Tensors and Deep Learning (Official)](https://pytorch.org)
+
+---
+
 **Thank you for reading us.**
 
 ***Tsuriel and Avraham.***
-
