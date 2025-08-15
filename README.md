@@ -122,12 +122,32 @@ A collection of **utility scripts** used throughout the project.
 
 ### **`OcrModel.py`** 📄  
 - Script to train the **OCR model**.  
-- Loads `OcrData` dataset, preprocesses it, trains the model, and saves it into `Models`.  
+- Loads `OcrData` dataset, preprocesses it, trains the model, and saves it into `Models`.
+- Hyperparameters we used:
+ ```bash
+EPOCHS = 20
+BATCH_SIZE = 32
+LEARNING_RATE = 0.0005
+IMAGE_HEIGHT = 64 # Resize all images to this height
+IMAGE_WIDTH = 256 # Resize all images to this width
+NUM_WORKERS = 4 # For DataLoader
+TRAIN_VAL_SPLIT = 0.9 # 90% for training, 10% for validation
+```
 
 ### **`Diacmodel.py`** ✒️  
 - Script to train the **Diacritization model**.  
 - Uses `DiacData` (text pairs) to learn how to insert nikkud into plain Hebrew text.  
-- Saves the trained model into `Models`.  
+- Saves the trained model into `Models`.
+- Hyperparameters we used:
+ ```bash
+embed_dim = 128
+hidden_dim = 256
+num_layers = 2
+dropout = 0.3
+epochs = 20
+batch_size = 16
+lr = 0.001
+```
 
 ---
 
