@@ -146,7 +146,7 @@ num_layers = 2
 dropout = 0.3
 epochs = 20
 batch_size = 16
-lr = 0.001
+lr = 0.0001 #We used LROnPlateau nut most of the training was with lr=0.0001
 ```
 
 ---
