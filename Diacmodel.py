@@ -146,17 +146,35 @@ def punctuate(model, text, char2idx, idx2tag, device):
 # 6. Main Function with Advanced Features
 # ---------------------------------------------
 def main(args):
+    """
+    Main function for training and evaluating the Hebrew punctuation model.
+
+    Steps:
+    1. Load and align diacritics data from files using the provided pattern.
+    2. Build character and tag mappings based on loaded data.
+    3. Split the data into training and validation sets.
+    4. Create PyTorch Datasets and DataLoaders for training and validation.
+    5. Initialize the model, optimizer, loss function, and learning rate scheduler.
+    6. Train the model for the specified number of epochs, saving the best model based on validation loss.
+    7. After training, reload the best model and run inference on a sample text.
+    """
+
     start = time.time()
+
+    # 1. Load and align diacritics data from files using the provided pattern.
     inputs, targets = load_and_align_data(args.input_with_diac)
     if not inputs: return
 
+    # 2. Build character and tag mappings based on loaded data.
     char2idx, tag2idx = build_mappings(inputs, targets)
     print(f"Vocabulary size: {len(char2idx)} chars, Tagset size: {len(tag2idx)} tags")
 
+    # 3. Split the data into training and validation sets.
     train_inputs, val_inputs, train_targets, val_targets = train_test_split(
         inputs, targets, test_size=0.15, random_state=42)
     print(f"Training set: {len(train_inputs)}, Validation set: {len(val_inputs)}")
 
+    # 4. Create PyTorch Datasets and DataLoaders for training and validation.
     train_ds = HebrewPunctuationDataset(train_inputs, train_targets, char2idx, tag2idx, args.max_len)
     val_ds = HebrewPunctuationDataset(val_inputs, val_targets, char2idx, tag2idx, args.max_len)
     train_loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True)
@@ -165,6 +183,7 @@ def main(args):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Using device: {device}")
     
+    # 5. Initialize the model, optimizer, loss function, and learning rate scheduler.
     model = BiLSTMPunctuator(
         vocab_size=len(char2idx), embedding_dim=args.embed_dim,
         hidden_dim=args.hidden_dim, tagset_size=len(tag2idx),
@@ -179,23 +198,24 @@ def main(args):
     criterion = nn.CrossEntropyLoss(ignore_index=pad_idx)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
 
-    # --- DYNAMIC LEARNING RATE SCHEDULER (verbose parameter removed) ---
+    # Learning rate scheduler that reduces LR when validation loss plateaus.
     scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=2)
 
     best_val_loss = float('inf')
     for epoch in range(1, args.epochs + 1):
+        # Train for one epoch
         train_loss = train_epoch(model, train_loader, criterion, optimizer, device)
+        # Validate after training
         val_loss, val_accuracy = evaluate(model, val_loader, criterion, device, pad_idx)
         
-        # --- Manually get the current learning rate ---
+        # Print current learning rate and losses
         current_lr = optimizer.param_groups[0]['lr']
-        
-        # --- Updated print statement to show the current LR ---
         print(f"Epoch {epoch:02d}/{args.epochs} | LR: {current_lr:.6f} | Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | Val Acc: {val_accuracy:.2f}%")
 
-        # The scheduler monitors the validation loss to decide when to change the LR
+        # Step the scheduler with the new validation loss
         scheduler.step(val_loss)
 
+        # Save model if validation loss improved
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             os.makedirs(args.save_dir, exist_ok=True)
@@ -205,7 +225,7 @@ def main(args):
             print(f"Validation loss improved. Model saved to {save_path}")
 
     print("\n--- Inference ---")
-    # Load and run inference as before
+    # 7. After training, reload the best model and run inference on a sample text.
     save_path = os.path.join(args.save_dir, 'punctuator_best.pt')
     if not os.path.exists(save_path):
         print("No model was saved. Ending.")
